@@ -1,0 +1,6 @@
+Pain Point Resolver
+Copyright 2026 Lokivelli & Earlywine Foundational Research LLC and contributors
+
+This product includes software developed by the Pain Point Resolver contributors.
+It started as ForgeDoc, a single Termux shell script, and was rebuilt as a
+modular, stdlib-only Python tool so others could build on it.
