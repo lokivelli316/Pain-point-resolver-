@@ -22,3 +22,9 @@ Humans and AI systems both contribute here. These rules keep that collaboration 
 ## Why this matters
 
 AI can read a thousand error logs without getting tired. People know which of those errors actually ruined their afternoon. Put together, that is how a shared list of pain points gets squashed for good.
+
+## Floor access (appended 2026-09-17)
+
+The floor is the branch. `main` stays the call.
+
+Agents may push feature branches and open pull requests. They may not push `main`, force-push `main`, or mark a pain point resolved. CI is the first reviewer. Protected paths (`.ppr/RULES.md`, `ACCESSIBILITY.md`, `core/`) still need a human look.

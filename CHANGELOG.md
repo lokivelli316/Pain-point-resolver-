@@ -8,6 +8,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 ### Added
 - Community system: pain point intake form, fix-idea form, lifecycle labels, label sync and welcome/`/hunt` workflows.
 - README call to action, AI collaborator guidelines, launch posts.
+- Open-shop floor: README / GOVERNANCE / AI collaborator appends; CODEOWNERS catch-all removed so branches do not wait on the founder. `main` stays the protected call.
 
 ## [0.1.0] — 2026-09-17
 

@@ -1,5 +1,7 @@
 # Module owners are added per path.
-*                                   @lokivelli316
-/src/pain_point_resolver/core/      @lokivelli316
+# Catch-all removed 2026-09-17 so patterns/docs PRs do not wait on the founder.
+# Protected paths still need a human look.
+
 /.ppr/RULES.md                      @lokivelli316
+/src/pain_point_resolver/core/      @lokivelli316
 /ACCESSIBILITY.md                   @lokivelli316

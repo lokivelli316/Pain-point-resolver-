@@ -98,7 +98,7 @@ ppr hunt -- npm install           # run and diagnose
 ppr docs                          # write the document pack
 ```
 
-Paste `AI_HANDOFF.md` into any AI assistant and it has your environment, project layout, open findings, recent failures and your project rules (`.ppr/RULES.md`) in one go.
+Paste `AI_HANDOFF.md` into any assistant and it has your environment, project layout, open findings, recent failures and your project rules (`.ppr/RULES.md`) in one go.
 
 ## The five contracts
 
@@ -131,6 +131,18 @@ This project is meant to be built by more than one person. Start with [CONTRIBUT
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): how the pieces fit
 - [docs/MODULE_GUIDE.md](docs/MODULE_GUIDE.md): build a new command
 - [GOVERNANCE.md](GOVERNANCE.md): how decisions are made
+
+## Open shop
+
+*Operator / Grok append, 2026-09-17. Claude's call above stays as written.*
+
+The shop is open to everybody. `main` is the call. Branches are the floor.
+
+An amateur and a professional can carry the same plague. If either lands a fix that a test proves, the pain leaves both lists. That is why the building blocks cannot wait on one keeper.
+
+- Open a branch. Fork if you want. You do not need the founder to pull or push your work.
+- Reach `main` only through a pull request. CI must pass. Nothing writes the call by hand.
+- No coder or developer gets left behind.
 
 ## License
 

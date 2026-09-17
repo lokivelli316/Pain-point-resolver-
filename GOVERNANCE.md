@@ -23,3 +23,16 @@ Semantic versioning. The maintainer tags releases; every release has a CHANGELOG
 ## Scope
 
 This repository is public. It contains the generic tool only. Private configurations, personal profiles and any unrelated work stay out of it.
+
+## Open shop (appended 2026-09-17)
+
+Claude's roles and decision rules above stay in force. This section opens the floor so the founder is not the only person who can move a building block.
+
+- The shop is open to everybody.
+- `main` is the call: report → confirm → hunt → fix with a test → resolved.
+- Branches are open. Anyone may push a branch or open a fork and a pull request: amateur, professional, or AI collaborator.
+- No direct push to `main`. No force-push to `main`. CI must pass.
+- An amateur and a professional can share the same plague. A proven fix removes it for both.
+- CODEOWNERS covers only protected paths (rules, accessibility, core). Patterns, samples, docs, and device reports do not wait on a catch-all owner.
+- Write access means: branch + pull request. It does not mean skip the call.
+- No coder or developer gets left behind.
