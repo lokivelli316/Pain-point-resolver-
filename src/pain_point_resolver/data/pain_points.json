@@ -1,0 +1,570 @@
+{
+ "_about": "Source of truth for the pain point map. status: open | partial | resolved. Only mark 'resolved' when a test proves it. Keys are stable ids; never renumber.",
+ "leverage_point": 30,
+ "pain_points": [
+  {
+   "id": 1,
+   "title": "Environment non-determinism (works on my machine)",
+   "group": "Environment & Setup",
+   "contract": "environment",
+   "status": "partial",
+   "modules": [
+    "doctor"
+   ]
+  },
+  {
+   "id": 2,
+   "title": "Complicated installs with unclear steps and no progress feedback",
+   "group": "Environment & Setup",
+   "contract": "environment",
+   "status": "partial",
+   "modules": [
+    "docs"
+   ]
+  },
+  {
+   "id": 3,
+   "title": "Port conflicts between projects and services",
+   "group": "Environment & Setup",
+   "contract": "environment",
+   "status": "partial",
+   "modules": [
+    "doctor"
+   ]
+  },
+  {
+   "id": 4,
+   "title": "Outdated or missing docs (README, .env.example) that don't match reality",
+   "group": "Environment & Setup",
+   "contract": "environment",
+   "status": "partial",
+   "modules": [
+    "docs"
+   ]
+  },
+  {
+   "id": 5,
+   "title": "Long onboarding before a newcomer can contribute",
+   "group": "Environment & Setup",
+   "contract": "environment",
+   "status": "partial",
+   "modules": [
+    "docs"
+   ]
+  },
+  {
+   "id": 6,
+   "title": "Android sandboxing: SELinux W^X and scoped storage block execution and access",
+   "group": "Environment & Setup",
+   "contract": "environment",
+   "status": "partial",
+   "modules": [
+    "doctor"
+   ]
+  },
+  {
+   "id": 7,
+   "title": "Android background restrictions and process killing during builds",
+   "group": "Environment & Setup",
+   "contract": "environment",
+   "status": "partial",
+   "modules": [
+    "hunt"
+   ]
+  },
+  {
+   "id": 8,
+   "title": "Slow compile cycles",
+   "group": "Build Systems",
+   "contract": "build-api",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 9,
+   "title": "Non-deterministic dependency graphs (no lockfiles, no pinned toolchains)",
+   "group": "Build Systems",
+   "contract": "build-api",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 10,
+   "title": "Build tool performance regressions and rising CI cost",
+   "group": "Build Systems",
+   "contract": "build-api",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 11,
+   "title": "AAPT2/Gradle architecture mismatches on ARM64 Android",
+   "group": "Build Systems",
+   "contract": "build-api",
+   "status": "partial",
+   "modules": [
+    "doctor"
+   ]
+  },
+  {
+   "id": 12,
+   "title": "Cross-compilation failures: missing libs, linker flags, host tool discovery",
+   "group": "Build Systems",
+   "contract": "build-api",
+   "status": "partial",
+   "modules": [
+    "doctor"
+   ]
+  },
+  {
+   "id": 13,
+   "title": "Imperative build scripts causing non-reproducibility and cache misses",
+   "group": "Build Systems",
+   "contract": "build-api",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 14,
+   "title": "Fragmented toolchains across projects and platforms",
+   "group": "Build Systems",
+   "contract": "build-api",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 15,
+   "title": "Insufficient build tooling",
+   "group": "Build Systems",
+   "contract": "build-api",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 16,
+   "title": "Dependency upkeep draining time from real work",
+   "group": "Dependency Management",
+   "contract": "dependency",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 17,
+   "title": "Dependencies frozen at first choice, then needing urgent patches",
+   "group": "Dependency Management",
+   "contract": "dependency",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 18,
+   "title": "No visibility into transitive dependencies",
+   "group": "Dependency Management",
+   "contract": "dependency",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 19,
+   "title": "Dependency hell: conflicting or bloated versions",
+   "group": "Dependency Management",
+   "contract": "dependency",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 20,
+   "title": "Supply-chain risk from unmaintained or malicious packages",
+   "group": "Dependency Management",
+   "contract": "dependency",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 21,
+   "title": "Alert overload from vulnerability and patch notices",
+   "group": "Dependency Management",
+   "contract": "dependency",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 22,
+   "title": "Package manager resolution limits and mirror failures",
+   "group": "Dependency Management",
+   "contract": "dependency",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 23,
+   "title": "Misidentified root causes; fixes that create new bugs",
+   "group": "Debugging & Observability",
+   "contract": "observability",
+   "status": "partial",
+   "modules": [
+    "hunt"
+   ]
+  },
+  {
+   "id": 24,
+   "title": "Dev vs production divergence",
+   "group": "Debugging & Observability",
+   "contract": "observability",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 25,
+   "title": "Inconsistent logging; hunting for the real error message",
+   "group": "Debugging & Observability",
+   "contract": "observability",
+   "status": "partial",
+   "modules": [
+    "hunt"
+   ]
+  },
+  {
+   "id": 26,
+   "title": "Service start ordering: APIs look broken while backends warm up",
+   "group": "Debugging & Observability",
+   "contract": "observability",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 27,
+   "title": "Latency in distributed API calls",
+   "group": "Debugging & Observability",
+   "contract": "observability",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 28,
+   "title": "Long stack traces and logs that are slow to read and easy to misread",
+   "group": "Debugging & Observability",
+   "contract": "observability",
+   "status": "partial",
+   "modules": [
+    "hunt"
+   ]
+  },
+  {
+   "id": 29,
+   "title": "Bugs that cannot be reproduced reliably",
+   "group": "Debugging & Observability",
+   "contract": "observability",
+   "status": "partial",
+   "modules": [
+    "hunt",
+    "register"
+   ]
+  },
+  {
+   "id": 30,
+   "title": "Installing and debugging your own APIs from other builds (foreign artifacts, unknown compatibility)",
+   "group": "API Lifecycle & Cross-Build",
+   "contract": "build-api",
+   "status": "partial",
+   "modules": [
+    "doctor"
+   ]
+  },
+  {
+   "id": 31,
+   "title": "Schema drift between sandbox and production",
+   "group": "API Lifecycle & Cross-Build",
+   "contract": "build-api",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 32,
+   "title": "Auth cascade failures: expired tokens causing 401s downstream",
+   "group": "API Lifecycle & Cross-Build",
+   "contract": "build-api",
+   "status": "partial",
+   "modules": [
+    "hunt"
+   ]
+  },
+  {
+   "id": 33,
+   "title": "Silent rate limiting that looks like a performance bug",
+   "group": "API Lifecycle & Cross-Build",
+   "contract": "build-api",
+   "status": "partial",
+   "modules": [
+    "hunt"
+   ]
+  },
+  {
+   "id": 34,
+   "title": "APIs that return unhelpful status codes",
+   "group": "API Lifecycle & Cross-Build",
+   "contract": "build-api",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 35,
+   "title": "Binary incompatibility: wrong CPU/libc assumptions (Illegal instruction)",
+   "group": "API Lifecycle & Cross-Build",
+   "contract": "build-api",
+   "status": "partial",
+   "modules": [
+    "doctor"
+   ]
+  },
+  {
+   "id": 36,
+   "title": "Port binding mistakes (localhost vs 0.0.0.0)",
+   "group": "API Lifecycle & Cross-Build",
+   "contract": "build-api",
+   "status": "partial",
+   "modules": [
+    "doctor"
+   ]
+  },
+  {
+   "id": 37,
+   "title": "Tool sprawl and context switching",
+   "group": "Tooling & Workflow",
+   "contract": "build-api",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 38,
+   "title": "Too many tedious manual tasks",
+   "group": "Tooling & Workflow",
+   "contract": "build-api",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 39,
+   "title": "Manual code review bottlenecks",
+   "group": "Tooling & Workflow",
+   "contract": "build-api",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 40,
+   "title": "Security testing bottlenecks",
+   "group": "Tooling & Workflow",
+   "contract": "build-api",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 41,
+   "title": "Rework",
+   "group": "Tooling & Workflow",
+   "contract": "build-api",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 42,
+   "title": "Slow redeploys",
+   "group": "Tooling & Workflow",
+   "contract": "build-api",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 43,
+   "title": "No structured guidance for self-taught developers",
+   "group": "Learning & Human Factors",
+   "contract": "human",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 44,
+   "title": "Too many resources, no progress",
+   "group": "Learning & Human Factors",
+   "contract": "human",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 45,
+   "title": "Imposter syndrome",
+   "group": "Learning & Human Factors",
+   "contract": "human",
+   "status": "open",
+   "modules": [],
+   "note": "Cannot be automated away; tooling can only reduce the load."
+  },
+  {
+   "id": 46,
+   "title": "Isolation when learning alone",
+   "group": "Learning & Human Factors",
+   "contract": "human",
+   "status": "open",
+   "modules": [],
+   "note": "Cannot be automated away; tooling can only reduce the load."
+  },
+  {
+   "id": 47,
+   "title": "Cognitive overload from how material is presented",
+   "group": "Learning & Human Factors",
+   "contract": "human",
+   "status": "partial",
+   "modules": [
+    "calm"
+   ]
+  },
+  {
+   "id": 48,
+   "title": "Copy-paste without understanding",
+   "group": "Learning & Human Factors",
+   "contract": "human",
+   "status": "partial",
+   "modules": [
+    "docs"
+   ]
+  },
+  {
+   "id": 49,
+   "title": "Technical debt accumulation",
+   "group": "Maintenance & Burnout",
+   "contract": "human",
+   "status": "partial",
+   "modules": [
+    "register"
+   ]
+  },
+  {
+   "id": 50,
+   "title": "Burnout",
+   "group": "Maintenance & Burnout",
+   "contract": "human",
+   "status": "partial",
+   "modules": [
+    "calm"
+   ],
+   "note": "Cannot be automated away; tooling can only reduce the load."
+  },
+  {
+   "id": 51,
+   "title": "Astigmatism: tight monospace text blurs together",
+   "group": "Visual Accessibility",
+   "contract": "human",
+   "status": "partial",
+   "modules": [
+    "a11y"
+   ]
+  },
+  {
+   "id": 52,
+   "title": "Farsightedness: small default terminal text",
+   "group": "Visual Accessibility",
+   "contract": "human",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 53,
+   "title": "Migraine triggers: flicker, glare, constant redraw",
+   "group": "Visual Accessibility",
+   "contract": "human",
+   "status": "partial",
+   "modules": [
+    "calm"
+   ]
+  },
+  {
+   "id": 54,
+   "title": "Sensory intensity of build output (rapid scrolling, flashing status)",
+   "group": "Visual Accessibility",
+   "contract": "human",
+   "status": "partial",
+   "modules": [
+    "calm"
+   ]
+  },
+  {
+   "id": 55,
+   "title": "Colour schemes that are either harsh or too low-contrast",
+   "group": "Visual Accessibility",
+   "contract": "human",
+   "status": "partial",
+   "modules": [
+    "a11y"
+   ]
+  },
+  {
+   "id": 56,
+   "title": "No line-height or letter-spacing control in Termux",
+   "group": "Visual Accessibility",
+   "contract": "human",
+   "status": "partial",
+   "modules": [
+    "a11y"
+   ]
+  },
+  {
+   "id": 57,
+   "title": "Terminal output is hard for screen readers to follow",
+   "group": "Screen Reader & Assistive Tech",
+   "contract": "human",
+   "status": "open",
+   "modules": []
+  },
+  {
+   "id": 58,
+   "title": "No accessible, line-by-line mode for build and CI logs",
+   "group": "Screen Reader & Assistive Tech",
+   "contract": "human",
+   "status": "partial",
+   "modules": [
+    "calm"
+   ]
+  },
+  {
+   "id": 59,
+   "title": "Cognitive overload from simultaneous text, colour and status channels",
+   "group": "Cognitive & Sensory",
+   "contract": "human",
+   "status": "partial",
+   "modules": [
+    "calm"
+   ]
+  },
+  {
+   "id": 60,
+   "title": "Context switching between AI output and your own code under magnification",
+   "group": "Cognitive & Sensory",
+   "contract": "human",
+   "status": "partial",
+   "modules": [
+    "docs"
+   ]
+  },
+  {
+   "id": 61,
+   "title": "Box-drawing and decorative Unicode adding noise",
+   "group": "Cognitive & Sensory",
+   "contract": "human",
+   "status": "partial",
+   "modules": [
+    "calm"
+   ]
+  },
+  {
+   "id": 62,
+   "title": "No standard accessible mode for CLIs",
+   "group": "Cognitive & Sensory",
+   "contract": "human",
+   "status": "partial",
+   "modules": [
+    "a11y"
+   ]
+  }
+ ]
+}

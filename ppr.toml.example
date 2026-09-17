@@ -1,0 +1,5 @@
+# Copy to ~/.config/ppr/config.toml (all projects) or ./ppr.toml (one project).
+
+[calm]
+interval = 0.5     # minimum seconds between screen lines (0.5 = 2 per second)
+heartbeat = 20     # seconds between "still running" lines

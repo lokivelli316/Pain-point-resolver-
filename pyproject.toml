@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pain-point-resolver"
+dynamic = ["version"]
+description = "Turn recurring developer pain into pre-flight checks. Termux-first, accessibility-first, stdlib-only."
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.11"
+authors = [{ name = "Robert M. Earlywine-Lucas (Lokivelli)" }]
+keywords = ["termux", "android", "developer-experience", "accessibility", "diagnostics", "cli"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: Android",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Topic :: Software Development :: Build Tools",
+  "Topic :: Software Development :: Debuggers",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/lokivelli316/Pain-point-resolver-"
+Issues = "https://github.com/lokivelli316/Pain-point-resolver-/issues"
+
+[project.scripts]
+ppr = "pain_point_resolver.cli:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "pain_point_resolver.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pain_point_resolver = ["data/*.toml", "data/*.json"]

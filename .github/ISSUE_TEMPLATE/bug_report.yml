@@ -1,0 +1,26 @@
+name: Bug report
+description: ppr itself misbehaved
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: Command you ran and what you saw. Remove tokens and personal paths.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+  - type: textarea
+    id: device
+    attributes:
+      label: Device
+      description: Paste the output of `ppr doctor --json` (the fingerprint section is enough).
+      render: json
+  - type: input
+    id: version
+    attributes:
+      label: ppr version
+      placeholder: ppr --version

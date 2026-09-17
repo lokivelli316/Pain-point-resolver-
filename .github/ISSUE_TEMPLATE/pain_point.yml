@@ -1,0 +1,72 @@
+name: "📣 Report a pain point"
+description: Something about building software hurts. No pain is too small.
+title: "[pain] "
+labels: ["pain-point", "pain:new"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for speaking up. Beginners and veterans hit the same walls, and every report helps someone else.
+        Remove tokens, passwords and personal paths from anything you paste.
+  - type: textarea
+    id: what
+    attributes:
+      label: What hurts?
+      description: Describe it the way you'd tell a friend. Plain words are perfect.
+      placeholder: "Every time I install X on my phone it fails with an error that doesn't explain anything..."
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Error text or what you see (optional)
+      render: text
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: How often does it hit you?
+      options:
+        - Every time
+        - Most days
+        - Now and then
+        - Once, but it cost me a lot
+    validations:
+      required: true
+  - type: dropdown
+    id: experience
+    attributes:
+      label: Your experience level (so we can see who is affected, never to judge)
+      options:
+        - Just starting out
+        - Self-taught / hobbyist
+        - Working developer
+        - Senior / lead
+        - Prefer not to say
+  - type: checkboxes
+    id: platform
+    attributes:
+      label: Where does it happen?
+      options:
+        - label: Termux / Android
+        - label: Linux
+        - label: macOS
+        - label: Windows / WSL
+        - label: CI / cloud
+  - type: textarea
+    id: tried
+    attributes:
+      label: What have you tried?
+      description: Workarounds count. "Nothing yet" is a fine answer.
+  - type: input
+    id: known
+    attributes:
+      label: Related pain point number (optional)
+      description: If it matches one from `ppr pain` or docs/PAIN_POINTS.md
+  - type: dropdown
+    id: help
+    attributes:
+      label: Would you like to help hunt it?
+      options:
+        - I'd like to try fixing it
+        - I can test fixes
+        - I'm just reporting it (that's enough!)

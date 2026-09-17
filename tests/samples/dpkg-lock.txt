@@ -1,0 +1,1 @@
+E: Could not get lock /data/data/com.termux/files/usr/var/lib/dpkg/lock-frontend

@@ -1,0 +1,25 @@
+name: Failure pattern
+description: ppr hunt didn't recognise an error (great first contribution)
+labels: [pattern, good first issue]
+body:
+  - type: textarea
+    id: log
+    attributes:
+      label: Error lines
+      description: The few lines that show the failure. Remove tokens and personal paths.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: cause
+    attributes:
+      label: Actual cause (if you know it)
+  - type: textarea
+    id: fix
+    attributes:
+      label: What fixed it
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options: [Termux, Linux, macOS, other]

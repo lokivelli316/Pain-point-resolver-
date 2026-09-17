@@ -1,0 +1,1 @@
+fatal: detected dubious ownership in repository at '/storage/emulated/0/proj'

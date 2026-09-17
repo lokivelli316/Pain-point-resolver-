@@ -1,0 +1,255 @@
+# Known failure patterns.
+#
+# This is the easiest place to contribute: add one [[pattern]] block, add a
+# sample line to tests/samples/, open a PR. No Python needed.
+#
+#   id          unique kebab-case name
+#   regex       Python regex, matched case-insensitively per line
+#   diagnosis   what is actually wrong, in plain words
+#   fix         the command or action that resolves it
+#   pain_points ids from pain_points.json this pattern addresses
+#   platforms   where it applies: "termux", "linux", "any"
+#   confidence  "high" | "medium" | "low"  (be honest; medium is fine)
+
+[[pattern]]
+id = "bad-shebang"
+regex = 'bad interpreter'
+diagnosis = "Script shebang points to /bin or /usr/bin, which do not exist in Termux."
+fix = "termux-fix-shebang <script>   (or run it as: bash <script>)"
+pain_points = [6]
+platforms = ["termux"]
+confidence = "high"
+
+[[pattern]]
+id = "crlf-line-endings"
+regex = "\\$'\\\\r'"
+diagnosis = "Windows CRLF line endings in a shell script."
+fix = "sed -i 's/\\r$//' <file>"
+pain_points = [1]
+platforms = ["any"]
+confidence = "high"
+
+[[pattern]]
+id = "no-tmp"
+regex = "/tmp.*(permission denied|no such file|read-only)|can'?t create temp|cannot create temp"
+diagnosis = "Termux has no writable /tmp."
+fix = "Use $TMPDIR in code (Termux sets it to $PREFIX/tmp)."
+pain_points = [6]
+platforms = ["termux"]
+confidence = "high"
+
+[[pattern]]
+id = "partial-upgrade"
+regex = 'CANNOT LINK EXECUTABLE|cannot locate symbol|library "[^"]+" not found'
+diagnosis = "Partial upgrade: binaries and shared libraries are out of sync."
+fix = "pkg upgrade -y"
+pain_points = [1, 19]
+platforms = ["termux"]
+confidence = "high"
+
+[[pattern]]
+id = "mirror-broken"
+regex = 'unable to locate package|under maintenance|failed to fetch|release file .* is not valid'
+diagnosis = "Package mirror problem or stale package lists."
+fix = "termux-change-repo   then: pkg update"
+pain_points = [2, 22]
+platforms = ["termux"]
+confidence = "high"
+
+[[pattern]]
+id = "pip-self-upgrade-blocked"
+regex = 'installing pip is forbidden'
+diagnosis = "Termux blocks pip from upgrading itself."
+fix = "pkg upgrade python-pip"
+pain_points = [2]
+platforms = ["termux"]
+confidence = "high"
+
+[[pattern]]
+id = "wheel-build-toolchain"
+regex = "failed building wheel|python\\.h: no such file|error: command '[^']*(clang|gcc)[^']*' failed"
+diagnosis = "A Python package needs compiling and the toolchain or headers are missing."
+fix = "pkg install build-essential binutils   (then check: pkg search python-<name> for a prebuilt package)"
+pain_points = [12, 19]
+platforms = ["termux", "linux"]
+confidence = "high"
+
+[[pattern]]
+id = "needs-rust"
+regex = 'rust compiler|cargo: (command )?not found|maturin'
+diagnosis = "The package builds a Rust extension and no Rust toolchain is installed."
+fix = "pkg install rust"
+pain_points = [12]
+platforms = ["termux", "linux"]
+confidence = "high"
+
+[[pattern]]
+id = "node-gyp-android"
+regex = 'gyp err|node-gyp'
+diagnosis = "Native Node module build failed (node-gyp on Android)."
+fix = "pkg install build-essential python && mkdir -p ~/.gyp && echo \"{'variables':{'android_ndk_path':''}}\" > ~/.gyp/include.gypi"
+pain_points = [12, 30]
+platforms = ["termux"]
+confidence = "medium"
+
+[[pattern]]
+id = "shared-storage-perms"
+regex = 'EACCES|EPERM|operation not permitted'
+diagnosis = "Write, symlink or chmod blocked. Most often the project sits on Android shared storage."
+fix = "Move the project into $HOME:  cp -r <dir> ~/"
+pain_points = [6]
+platforms = ["termux"]
+confidence = "medium"
+
+[[pattern]]
+id = "read-only-fs"
+regex = 'read-only file system'
+diagnosis = "Tried to write to a system path."
+fix = "Write under $HOME or $PREFIX instead."
+pain_points = [6]
+platforms = ["any"]
+confidence = "high"
+
+[[pattern]]
+id = "process-killed"
+regex = '(^|[^a-z])killed($|[^a-z])|signal 9'
+diagnosis = "The process was killed: low memory, or Android's phantom process killer (Android 12+)."
+fix = "Close other apps; build with fewer jobs (make -j2); Android 14+: Developer options > Disable child process restrictions."
+pain_points = [7]
+platforms = ["termux"]
+confidence = "medium"
+
+[[pattern]]
+id = "port-in-use"
+regex = 'address already in use|EADDRINUSE'
+diagnosis = "The port is already taken by another process."
+fix = "Stop the old process (pkill -f <name>) or pick a free port: ppr doctor --port <n>"
+pain_points = [3, 36]
+platforms = ["any"]
+confidence = "high"
+
+[[pattern]]
+id = "tls-certs"
+regex = 'CERTIFICATE_VERIFY_FAILED|ssl certificate problem|unable to get local issuer'
+diagnosis = "TLS certificate store missing or stale."
+fix = "pkg install ca-certificates openssl"
+pain_points = [2]
+platforms = ["termux"]
+confidence = "high"
+
+[[pattern]]
+id = "network-dns"
+regex = 'could not resolve host|temporary failure in name resolution|network is unreachable|getaddrinfo'
+diagnosis = "Network or DNS failure."
+fix = "Check Wi-Fi / VPN / mobile data; test with: curl -I https://example.com"
+pain_points = [24]
+platforms = ["any"]
+confidence = "high"
+
+[[pattern]]
+id = "disk-full"
+regex = 'no space left on device|ENOSPC'
+diagnosis = "Storage is full."
+fix = "pkg clean && rm -rf ~/.cache/pip ~/.npm/_cacache   then check: df -h ~"
+pain_points = [2]
+platforms = ["any"]
+confidence = "high"
+
+[[pattern]]
+id = "dpkg-interrupted"
+regex = 'dpkg was interrupted'
+diagnosis = "A package install was interrupted."
+fix = "dpkg --configure -a"
+pain_points = [2]
+platforms = ["termux", "linux"]
+confidence = "high"
+
+[[pattern]]
+id = "dpkg-lock"
+regex = 'could not get lock|dpkg frontend lock'
+diagnosis = "Another pkg/apt process is running."
+fix = "Wait for it to finish, or: pkill apt"
+pain_points = [2]
+platforms = ["termux", "linux"]
+confidence = "high"
+
+[[pattern]]
+id = "git-dubious-ownership"
+regex = 'dubious ownership'
+diagnosis = "Git refuses a repository it believes another user owns (common on shared storage)."
+fix = "git config --global --add safe.directory <repo-path>"
+pain_points = [6]
+platforms = ["any"]
+confidence = "high"
+
+[[pattern]]
+id = "foreign-glibc-binary"
+regex = 'required file not found|ld-linux|GLIBC_[0-9]'
+diagnosis = "A prebuilt glibc binary. Termux uses Android's bionic libc, so it cannot load it."
+fix = "pkg install <tool>, or run it inside proot-distro. Check any binary with: ppr doctor --binary <file>"
+pain_points = [30, 35]
+platforms = ["termux"]
+confidence = "high"
+
+[[pattern]]
+id = "illegal-instruction"
+regex = 'illegal instruction|SIGILL'
+diagnosis = "Binary uses CPU instructions this device lacks (built with the wrong CPU assumptions)."
+fix = "Rebuild for this CPU, or install the distro/pkg build. Inspect with: ppr doctor --binary <file>"
+pain_points = [35, 30]
+platforms = ["any"]
+confidence = "high"
+
+[[pattern]]
+id = "segfault"
+regex = 'segmentation fault|SIGSEGV'
+diagnosis = "Crash: often a glibc/bionic mismatch or a bad native build."
+fix = "Reinstall through pkg; otherwise run under proot-distro."
+pain_points = [35]
+platforms = ["termux"]
+confidence = "low"
+
+[[pattern]]
+id = "localhost-bind"
+regex = 'connection refused'
+diagnosis = "Nothing is listening where the client connects. Service not started yet, wrong port, or bound to 127.0.0.1 while the client comes from elsewhere."
+fix = "Confirm the service is up; bind to 0.0.0.0 if it must be reachable from other devices or containers."
+pain_points = [26, 36]
+platforms = ["any"]
+confidence = "medium"
+
+[[pattern]]
+id = "auth-401"
+regex = '\b401\b.*unauthori[sz]ed|unauthori[sz]ed.*\b401\b|status(code)?[ =:]*401\b|token (has )?expired'
+diagnosis = "Authentication failed: expired or missing token."
+fix = "Refresh the token/credentials before retrying; check the env var the client reads."
+pain_points = [32]
+platforms = ["any"]
+confidence = "medium"
+
+[[pattern]]
+id = "rate-limited"
+regex = '\b429\b.*(too many|rate)|too many requests|rate[- ]limit(ed|ing)?\b'
+diagnosis = "Rate limited by the remote API."
+fix = "Back off and retry later; add retry-with-backoff to the client."
+pain_points = [33]
+platforms = ["any"]
+confidence = "high"
+
+[[pattern]]
+id = "permission-denied"
+regex = 'permission denied'
+diagnosis = "File not executable, or storage permission missing."
+fix = "chmod +x <file>   (for Downloads access: termux-setup-storage)"
+pain_points = [6]
+platforms = ["any"]
+confidence = "medium"
+
+[[pattern]]
+id = "externally-managed-python"
+regex = 'externally-managed-environment'
+diagnosis = "This Linux distro protects its system Python from pip installs."
+fix = "pipx install <package>   or use a virtual environment: python3 -m venv .venv && . .venv/bin/activate"
+pain_points = [2, 19]
+platforms = ["linux"]
+confidence = "high"

@@ -1,0 +1,1 @@
+ERROR: Installing pip is forbidden, this will break the python-pip package (termux).

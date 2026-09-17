@@ -1,0 +1,15 @@
+name: Device report
+description: Share how ppr behaves on your phone or machine
+labels: [device-report]
+body:
+  - type: textarea
+    id: fingerprint
+    attributes:
+      label: ppr doctor --json
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything that didn't work or read well

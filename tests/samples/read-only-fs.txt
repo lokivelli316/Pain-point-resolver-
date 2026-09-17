@@ -1,0 +1,1 @@
+cp: cannot create regular file '/system/bin/x': Read-only file system

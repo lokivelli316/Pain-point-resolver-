@@ -1,0 +1,5 @@
+# Module owners are added per path.
+*                                   @lokivelli316
+/src/pain_point_resolver/core/      @lokivelli316
+/.ppr/RULES.md                      @lokivelli316
+/ACCESSIBILITY.md                   @lokivelli316

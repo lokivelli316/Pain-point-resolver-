@@ -1,0 +1,26 @@
+name: "🔧 Fix or workaround"
+description: You know how to fix (or soften) a pain point
+labels: ["fix-idea"]
+body:
+  - type: input
+    id: issue
+    attributes:
+      label: Which pain point issue or number?
+    validations:
+      required: true
+  - type: textarea
+    id: fix
+    attributes:
+      label: The fix or workaround
+    validations:
+      required: true
+  - type: textarea
+    id: proof
+    attributes:
+      label: How can we prove it works?
+      description: A command, a test idea, before/after output
+  - type: dropdown
+    id: confidence
+    attributes:
+      label: How sure are you?
+      options: [high, medium, low]
