@@ -1,0 +1,50 @@
+name: community
+
+on:
+  issues:
+    types: [opened]
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+
+jobs:
+  welcome-pain-point:
+    if: github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'pain-point')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const body = [
+              `Thanks for reporting this, @${context.payload.issue.user.login}. No pain is too small here.`,
+              ``,
+              `**What happens next**`,
+              `1. Anyone who hits this too: comment with your platform and how often it happens. Two confirmations move it to \`pain:confirmed\`.`,
+              `2. Want to work on it? Comment \`/hunt\` and it gets the \`pain:hunting\` label.`,
+              `3. A fix lands as a pull request with a test. Only then is it marked resolved.`,
+              ``,
+              `Process: [PAIN_POINT_LIFECYCLE.md](https://github.com/${context.repo.owner}/${context.repo.repo}/blob/main/docs/community/PAIN_POINT_LIFECYCLE.md)`,
+            ].join('\n');
+            await github.rest.issues.createComment({ ...context.repo, issue_number: context.issue.number, body });
+
+  hunt-command:
+    if: >-
+      github.event_name == 'issue_comment' &&
+      !github.event.issue.pull_request &&
+      startsWith(github.event.comment.body, '/hunt')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const who = context.payload.comment.user.login;
+            await github.rest.issues.addLabels({ ...context.repo, issue_number: context.issue.number, labels: ['pain:hunting'] });
+            try {
+              await github.rest.issues.removeLabel({ ...context.repo, issue_number: context.issue.number, name: 'pain:new' });
+            } catch (e) { if (e.status !== 404) throw e; }
+            await github.rest.issues.createComment({
+              ...context.repo, issue_number: context.issue.number,
+              body: `@${who} is hunting this one. Share findings here as you go, even partial ones.`,
+            });
